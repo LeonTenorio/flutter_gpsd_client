@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:dartz/dartz.dart';
+import 'package:gpsd_client/domain/index.dart';
 import 'package:gpsd_client/domain/parser.dart';
 import 'package:gpsd_client/domain/poll_object/poll_object.dart';
 import 'package:gpsd_client/gpsd_client.dart';
@@ -10,7 +12,7 @@ class GpsdClientImpl implements GpsdClient {
   const GpsdClientImpl();
 
   @override
-  Future<PollObject?> get actualPollValues async {
+  Future<Tuple2<AttObject?, PollObject?>> get actualGpsSensorValues async {
     final socket = await Socket.connect('127.0.0.1', 2947);
 
     socket.add('?WATCH={"enable":true}'.codeUnits);
