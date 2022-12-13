@@ -1,7 +1,9 @@
-import 'package:gpsd_client/domain/poll_object/poll_object.dart';
+import 'package:dartz/dartz.dart';
+import 'package:gpsd_client/domain/index.dart';
 
 abstract class GpsdClient {
   Stream<Object?> get gpsdEventStream;
 
-  Future<PollObject?> get actualPollValues;
+  Future<Tuple3<DateTime?, List<TpvObject>?, AttObject?>>
+      get actualGpsSensorValues;
 }
