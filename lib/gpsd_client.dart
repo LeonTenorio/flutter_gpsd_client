@@ -4,5 +4,6 @@ import 'package:gpsd_client/domain/index.dart';
 abstract class GpsdClient {
   Stream<Object?> get gpsdEventStream;
 
-  Future<Tuple2<AttObject?, PollObject?>> get actualGpsSensorValues;
+  Future<Tuple3<DateTime?, List<TpvObject>?, AttObject?>>
+      get actualGpsSensorValues;
 }
