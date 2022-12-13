@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gpsd_client/gps_client_impl.dart';
 import 'package:gpsd_client/gpsd_client.dart';
@@ -9,11 +10,14 @@ void main() {
     gpsdClient = const GpsdClientImpl();
   });
 
-  test("GPSD Client actual poll values test", () async {
-    final actualPollValues = await gpsdClient.actualPollValues;
-    print(actualPollValues);
+  test("GPSD Client actual gps sensor values", () async {
+    final actualGpsSensorValues = await gpsdClient.actualGpsSensorValues;
+    print(actualGpsSensorValues);
 
-    expect(actualPollValues, isNot(equals(null)));
+    expect(
+      actualGpsSensorValues,
+      isNot(equals(const Tuple3(null, null, null))),
+    );
   });
 
   test('GPSD Client event stream test', () async {
